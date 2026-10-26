@@ -1,0 +1,225 @@
+
+.superadmin-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-family: "Inter", "Noto Sans Devanagari", Arial, sans-serif;
+  background: #fff;
+  color: #183b2b;
+}
+
+.superadmin-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  text-align: center;
+  color: white;
+  background:
+    linear-gradient(135deg, rgba(10, 49, 30, 0.86), rgba(20, 93, 48, 0.68)),
+    url("https://images.pexels.com/photos/2382904/pexels-photo-2382904.jpeg")
+    center / cover;
+}
+
+.superadmin-image-content {
+  max-width: 440px;
+}
+
+.superadmin-brand-icon {
+  font-size: 54px;
+}
+
+.superadmin-image h1 {
+  margin: 14px 0;
+  font-size: clamp(32px, 4vw, 48px);
+}
+
+.superadmin-image p {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #e5f5e9;
+}
+
+.superadmin-image-note {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 11px 18px;
+  border: 1px solid #b8e4c5;
+  border-radius: 30px;
+  font-size: 13px;
+}
+
+.superadmin-form-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  padding: 70px clamp(24px, 7vw, 100px);
+}
+
+.superadmin-back {
+  position: absolute;
+  top: 30px;
+  left: 35px;
+  color: #287344;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.superadmin-back:hover {
+  text-decoration: underline;
+}
+
+.superadmin-card {
+  width: 100%;
+  max-width: 430px;
+  margin: 0 auto;
+}
+
+.superadmin-lock {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
+  background: #e8f5eb;
+  font-size: 27px;
+}
+
+.superadmin-eyebrow {
+  margin-top: 28px;
+  color: #388454;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.superadmin-card h2 {
+  margin: 10px 0;
+  font-size: clamp(26px, 3vw, 34px);
+}
+
+.superadmin-subtitle {
+  margin-bottom: 30px;
+  color: #758278;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.superadmin-card label {
+  display: block;
+  margin: 18px 0 8px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.superadmin-card input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px 15px;
+  border: 1px solid #dce5dd;
+  border-radius: 9px;
+  outline: none;
+  background: #fbfdfb;
+  color: #183b2b;
+  font-size: 14px;
+}
+
+.superadmin-card input:focus {
+  border-color: #34804c;
+  box-shadow: 0 0 0 3px rgba(52, 128, 76, 0.1);
+}
+
+.superadmin-password-wrap {
+  position: relative;
+}
+
+.superadmin-password-wrap input {
+  padding-right: 65px;
+}
+
+.superadmin-show-password {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  border: 0;
+  background: transparent;
+  color: #287344;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.superadmin-submit {
+  width: 100%;
+  margin-top: 24px;
+  padding: 15px;
+  border: 0;
+  border-radius: 9px;
+  background: #247443;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.superadmin-submit:hover {
+  background: #195c34;
+  transform: translateY(-1px);
+}
+
+.superadmin-error {
+  margin-top: 12px;
+  color: #c0392b;
+  font-size: 13px;
+}
+
+.superadmin-security,
+.superadmin-footer {
+  color: #839087;
+  text-align: center;
+  font-size: 12px;
+}
+
+.superadmin-security {
+  margin-top: 25px;
+}
+
+.superadmin-footer {
+  margin-top: 45px;
+  line-height: 1.6;
+}
+
+@media (max-width: 760px) {
+  .superadmin-page {
+    grid-template-columns: 1fr;
+  }
+
+  .superadmin-image {
+    min-height: 220px;
+    padding: 30px 20px;
+  }
+
+  .superadmin-image h1 {
+    font-size: 30px;
+  }
+
+  .superadmin-image p {
+    font-size: 14px;
+  }
+
+  .superadmin-form-section {
+    padding: 85px 24px 35px;
+  }
+
+  .superadmin-back {
+    top: 25px;
+    left: 24px;
+  }
+
+  .superadmin-footer {
+    margin-top: 30px;
+  }
+}

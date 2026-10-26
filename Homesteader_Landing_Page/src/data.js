@@ -1,0 +1,246 @@
+export const cropData = [
+  {
+    name: "Wheat",
+    type: "Cereals",
+    season: "Rabi",
+    image: "https://images.pexels.com/photos/29912210/pexels-photo-29912210.jpeg?auto=compress&cs=tinysrgb&w=1000",
+    text: {
+      en: "Growing basics, crop stages and seasonal planning resources.",
+      mr: "गहू लागवड, पिकाच्या अवस्था आणि हंगामी नियोजनाची माहिती.",
+    },
+  },
+  {
+    name: "Rice",
+    type: "Cereals",
+    season: "Kharif",
+    image: "https://images.pexels.com/photos/29039798/pexels-photo-29039798.jpeg?auto=compress&cs=tinysrgb&w=1000",
+    text: {
+      en: "Learn about crop care, water needs and seasonal planning.",
+      mr: "भात पिकाची काळजी, पाण्याची गरज आणि हंगामी नियोजन जाणून घ्या.",
+    },
+  },
+  {
+    name: "Tomato",
+    type: "Vegetables",
+    season: "Regional",
+    image: "https://images.unsplash.com/photo-1546094096-0df4bcaaa337?auto=format&fit=crop&w=1000&q=85",
+    text: {
+      en: "General information about growing and crop care.",
+      mr: "टोमॅटो लागवड आणि पिकाच्या काळजीविषयी माहिती.",
+    },
+  },
+  {
+    name: "Cotton",
+    type: "Cash crops",
+    season: "Kharif",
+    image: "https://images.unsplash.com/photo-1595007082193-4f1e6b9c0d19?auto=format&fit=crop&w=1000&q=85",
+    text: {
+      en: "Cotton growing information and seasonal resources.",
+      mr: "कापूस लागवड आणि हंगामानुसार उपयुक्त माहिती.",
+    },
+  },
+  {
+    name: "Onion",
+    type: "Vegetables",
+    season: "Regional",
+    image: "https://images.unsplash.com/photo-1508747703725-719777637510?auto=format&fit=crop&w=1000&q=85",
+    text: {
+      en: "Crop information and links to local guidance.",
+      mr: "कांदा पिकाची माहिती आणि स्थानिक मार्गदर्शन.",
+    },
+  },
+  {
+    name: "Grapes",
+    type: "Fruits",
+    season: "Regional",
+    image: "https://images.unsplash.com/photo-1537640538966-79f369143f8f?auto=format&fit=crop&w=1000&q=85",
+    text: {
+      en: "Orchard planning and fruit crop care resources.",
+      mr: "द्राक्ष बागेचे नियोजन आणि फळपिकांच्या काळजीची माहिती.",
+    },
+  },
+];
+
+const english = {
+  nav: ["Home", "Services", "Crop library", "Market prices", "About"],
+  signIn: "Sign in",
+  audience: "For India's farming community",
+  info: "Information · Guidance · Training",
+  tagline: "AGRICULTURE KNOWLEDGE, IN ONE PLACE",
+  heroTitle1: "Stronger farms.",
+  heroTitle2: "Brighter futures.",
+  heroText:
+    "Useful crop information, market insights, soil guidance and learning opportunities — created for India's farming community.",
+  explore: "Explore services",
+  ask: "Ask a question",
+  heroNote: "Made to support farmers, families and agriculture learners",
+  next: "YOUR FARMING COMPANION",
+  cardTitle: "Knowledge for every season",
+  cardText: "Explore trusted resources and find your next step.",
+  trust: [
+    ["Crop knowledge", "Explore growing resources"],
+    ["Market information", "Browse price records"],
+    ["Soil guidance", "Plan with useful resources"],
+    ["Training support", "Connect with agencies"],
+  ],
+  eyebrowServices: "TOOLS FOR EVERY FARM",
+  servicesTitle1: "A little knowledge can",
+  servicesTitle2: "grow a lot.",
+  servicesIntro:
+    "Bring crop information, soil guidance, market records and farmer support together in one place.",
+  serviceTitles: [
+    "Market price information",
+    "Soil & crop guidance",
+    "Weather & seasonal updates",
+    "Farmer enquiries",
+    "Agriculture training",
+    "Learning resources",
+  ],
+  serviceTexts: [
+    "Browse published price records with market and update date.",
+    "Explore soil information and crop-planning resources.",
+    "Read seasonal notices and agriculture updates.",
+    "Send questions and track responses after sign-in is connected.",
+    "Request training from participating agriculture agencies.",
+    "Explore crops, seeds, fertilizers, fruits and vegetables.",
+  ],
+  exploreFeature: "Explore feature",
+  library: "EXPLORE THE CROP LIBRARY",
+  cropTitle1: "Learn about your",
+  cropTitle2: "crops.",
+  cropIntro:
+    "Explore common crops and find information for better planning. Always confirm local recommendations with an agriculture expert.",
+  categories: {
+    All: "All crops",
+    Cereals: "Cereals",
+    Vegetables: "Vegetables",
+    "Cash crops": "Cash crops",
+    Fruits: "Fruits",
+  },
+  searchCrop: "Search crops...",
+  askCrop: "Ask about this crop",
+  cropGuide: "Crop guide",
+  season: {
+    Rabi: "Rabi season",
+    Kharif: "Kharif season",
+    Regional: "Season varies by region",
+  },
+  noCrop: "No matching crops. Try a different search.",
+  cropNote:
+    "Crop seasons vary by region. Images and descriptions are for demonstration.",
+  market: "MARKET INFORMATION",
+  marketTitle1: "Plan with",
+  marketTitle2: "better information.",
+  marketIntro:
+    "View example market-price records. Check the market, date and source before making a selling decision.",
+  marketBullets: [
+    "Clear market labels",
+    "Update-date field",
+    "Searchable records",
+  ],
+  priceExplorer: "PRICE EXPLORER",
+  sampleRecords: "Example market records",
+  demo: "DEMO DATA",
+  searchPrice: "Search crop or market...",
+  crop: "Crop",
+  marketName: "Market",
+  price: "Price",
+  noPrice: "No matching example records.",
+  demoOnly:
+    "Illustrative values only — these are not live market prices.",
+  submitted:
+    "Demo only: connect this form to your Spring Boot API to save the enquiry.",
+};
+
+const marathi = {
+  nav: ["मुख्यपृष्ठ", "सेवा", "पीक माहिती", "बाजारभाव", "आमच्याबद्दल"],
+  signIn: "लॉगिन",
+  audience: "भारतीय शेतकरी समुदायासाठी",
+  info: "माहिती · मार्गदर्शन · प्रशिक्षण",
+  tagline: "शेतीविषयक माहिती — एकाच ठिकाणी",
+  heroTitle1: "समृद्ध शेती.",
+  heroTitle2: "उज्ज्वल भविष्य.",
+  heroText:
+    "भारतीय शेतकरी बांधवांसाठी पीक माहिती, बाजारभाव, मातीविषयक मार्गदर्शन आणि प्रशिक्षणाच्या संधी.",
+  explore: "सेवा पाहा",
+  ask: "प्रश्न विचारा",
+  heroNote: "शेतकरी, कुटुंबे आणि कृषी विद्यार्थ्यांसाठी उपयुक्त",
+  next: "तुमचा शेतीमित्र",
+  cardTitle: "प्रत्येक हंगामासाठी माहिती",
+  cardText: "उपयुक्त माहिती पाहा आणि पुढचे पाऊल ठरवा.",
+  trust: [
+    ["पीक माहिती", "लागवडीसाठी मार्गदर्शन"],
+    ["बाजारभाव", "बाजारभावाच्या नोंदी पाहा"],
+    ["माती मार्गदर्शन", "योग्य नियोजन करा"],
+    ["प्रशिक्षण", "कृषी संस्थांशी संपर्क"],
+  ],
+  eyebrowServices: "शेतीसाठी उपयुक्त साधने",
+  servicesTitle1: "थोडी माहितीही",
+  servicesTitle2: "मोठा बदल घडवते.",
+  servicesIntro:
+    "पीक माहिती, माती मार्गदर्शन, बाजारभाव आणि शेतकरी सहाय्य एकाच ठिकाणी.",
+  serviceTitles: [
+    "बाजारभावाची माहिती",
+    "माती व पीक मार्गदर्शन",
+    "हवामान व हंगामी माहिती",
+    "शेतकरी चौकशी",
+    "कृषी प्रशिक्षण",
+    "अभ्यास साहित्य",
+  ],
+  serviceTexts: [
+    "बाजारपेठ आणि अपडेट दिनांकासह उपलब्ध भाव नोंदी पाहा.",
+    "मातीविषयक माहिती आणि पीक नियोजनाचे मार्गदर्शन पाहा.",
+    "हंगामी सूचना आणि कृषीविषयक अपडेट वाचा.",
+    "प्रश्न पाठवा आणि लॉगिन सुविधा जोडल्यावर उत्तरांचा मागोवा घ्या.",
+    "कृषी संस्थांकडे प्रशिक्षणासाठी विनंती करा.",
+    "पिके, बियाणे, खते, फळे आणि भाज्यांची माहिती पाहा.",
+  ],
+  exploreFeature: "माहिती पाहा",
+  library: "पीक माहिती संग्रह",
+  cropTitle1: "आपल्या पिकांची",
+  cropTitle2: "माहिती जाणून घ्या.",
+  cropIntro:
+    "सामान्य पिकांची माहिती पाहा आणि चांगले नियोजन करा. स्थानिक शिफारसी कृषी तज्ज्ञांकडून तपासून घ्या.",
+  categories: {
+    All: "सर्व पिके",
+    Cereals: "धान्य पिके",
+    Vegetables: "भाजीपाला",
+    "Cash crops": "नगदी पिके",
+    Fruits: "फळपिके",
+  },
+  searchCrop: "पीक शोधा...",
+  askCrop: "या पिकाबद्दल विचारा",
+  cropGuide: "पीक मार्गदर्शन",
+  season: {
+    Rabi: "रब्बी हंगाम",
+    Kharif: "खरीप हंगाम",
+    Regional: "हंगाम प्रदेशानुसार बदलतो",
+  },
+  noCrop: "पीक सापडले नाही. दुसरे नाव शोधा.",
+  cropNote:
+    "पिकांचा हंगाम प्रदेशानुसार बदलतो. छायाचित्रे व माहिती प्रात्यक्षिकासाठी आहेत.",
+  market: "बाजारभाव माहिती",
+  marketTitle1: "योग्य माहितीच्या",
+  marketTitle2: "आधारे नियोजन करा.",
+  marketIntro:
+    "बाजारभावाच्या नमुना नोंदी पाहा. विक्रीचा निर्णय घेण्यापूर्वी बाजारपेठ, दिनांक आणि स्रोत तपासा.",
+  marketBullets: [
+    "बाजारपेठेचे नाव",
+    "अपडेट दिनांक",
+    "शोधण्याची सुविधा",
+  ],
+  priceExplorer: "बाजारभाव शोधा",
+  sampleRecords: "बाजारभावाच्या नमुना नोंदी",
+  demo: "नमुना माहिती",
+  searchPrice: "पीक किंवा बाजारपेठ शोधा...",
+  crop: "पीक",
+  marketName: "बाजारपेठ",
+  price: "भाव",
+  noPrice: "नोंद सापडली नाही.",
+  demoOnly:
+    "हे फक्त नमुना दर आहेत — हे थेट किंवा आजचे बाजारभाव नाहीत.",
+  submitted:
+    "प्रात्यक्षिक: चौकशी जतन करण्यासाठी हा फॉर्म Spring Boot API शी जोडा.",
+};
+
+export const copy = { en: english, mr: marathi };
