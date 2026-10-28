@@ -1,0 +1,114 @@
+.request-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  overflow-y: auto;
+  padding: 24px;
+  background: #10251dcc;
+}
+
+.request-modal {
+  position: relative;
+  width: min(560px, 100%);
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  padding: 30px;
+  border-radius: 14px;
+  background: white;
+  box-shadow: 0 24px 80px #0004;
+}
+
+.request-modal h2 {
+  margin: 0 40px 8px 0;
+  font-size: 25px;
+  color: #1b3525;
+}
+
+.request-modal > p {
+  margin: 0 0 20px;
+  color: #718074;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.request-modal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: #edf4e5;
+  color: #1d5938;
+}
+
+.request-form {
+  display: grid;
+  gap: 14px;
+}
+
+.request-form label {
+  display: grid;
+  gap: 7px;
+  color: #344a39;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.request-form input,
+.request-form textarea {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #dfe7d9;
+  border-radius: 7px;
+  outline: 0;
+  background: #fbfdfb;
+  color: #203326;
+  font-size: 13px;
+}
+
+.request-form input:focus,
+.request-form textarea:focus {
+  border-color: #39734a;
+  box-shadow: 0 0 0 3px #39734a18;
+}
+
+.request-form textarea {
+  resize: vertical;
+}
+
+.request-form .btn:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.request-error {
+  margin: 0;
+  color: #b42318;
+  font-size: 12px;
+}
+
+.request-toast {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 60;
+  max-width: min(420px, calc(100% - 48px));
+  padding: 15px 19px;
+  border-radius: 9px;
+  background: #1d5938;
+  color: white;
+  font-size: 13px;
+  box-shadow: 0 10px 35px #10251d40;
+}
+
+@media (max-width: 600px) {
+  .request-modal {
+    padding: 24px 19px;
+  }
+}

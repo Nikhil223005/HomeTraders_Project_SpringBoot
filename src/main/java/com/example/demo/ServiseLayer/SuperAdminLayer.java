@@ -1,10 +1,13 @@
 package com.example.demo.ServiseLayer;
 
+import java.util.Optional;
 
 import com.example.demo.entitys.SuperAdmin;
 
 public interface SuperAdminLayer {
-	
-	public void saveAdmin(SuperAdmin as);
-	
+
+	void saveAdmin(SuperAdmin admin);
+
+	Optional<SuperAdmin> getAdmin(String email, String password);
+
 }

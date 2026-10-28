@@ -33,7 +33,7 @@ export const cropData = [
     name: "Cotton",
     type: "Cash crops",
     season: "Kharif",
-    image: "https://images.unsplash.com/photo-1595007082193-4f1e6b9c0d19?auto=format&fit=crop&w=1000&q=85",
+    image: "https://png.pngtree.com/thumb_back/fw800/background/20230527/pngtree-cotton-plant-image_2698937.jpg",
     text: {
       en: "Cotton growing information and seasonal resources.",
       mr: "कापूस लागवड आणि हंगामानुसार उपयुक्त माहिती.",
@@ -43,7 +43,7 @@ export const cropData = [
     name: "Onion",
     type: "Vegetables",
     season: "Regional",
-    image: "https://images.unsplash.com/photo-1508747703725-719777637510?auto=format&fit=crop&w=1000&q=85",
+    image: "://httpsimages.unsplash.com/photo-1508747703725-719777637510?auto=format&fit=crop&w=1000&q=85",
     text: {
       en: "Crop information and links to local guidance.",
       mr: "कांदा पिकाची माहिती आणि स्थानिक मार्गदर्शन.",

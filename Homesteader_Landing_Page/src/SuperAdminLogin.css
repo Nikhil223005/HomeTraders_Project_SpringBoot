@@ -176,6 +176,17 @@
   font-size: 13px;
 }
 
+.superadmin-success {
+  margin-top: 12px;
+  color: #247443;
+  font-size: 13px;
+}
+
+.superadmin-submit:disabled {
+  cursor: wait;
+  opacity: 0.75;
+}
+
 .superadmin-security,
 .superadmin-footer {
   color: #839087;

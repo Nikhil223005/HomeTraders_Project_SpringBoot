@@ -1,3 +1,5 @@
+import cottonImage from "./assets/cotton.jpeg";
+
 export const cropData = [
   {
     name: "Wheat",
@@ -33,7 +35,7 @@ export const cropData = [
     name: "Cotton",
     type: "Cash crops",
     season: "Kharif",
-    image: "https://images.unsplash.com/photo-1595007082193-4f1e6b9c0d19?auto=format&fit=crop&w=1000&q=85",
+    image: cottonImage,
     text: {
       en: "Cotton growing information and seasonal resources.",
       mr: "कापूस लागवड आणि हंगामानुसार उपयुक्त माहिती.",
@@ -73,6 +75,24 @@ const english = {
     "Useful crop information, market insights, soil guidance and learning opportunities — created for India's farming community.",
   explore: "Explore services",
   ask: "Ask a question",
+  close: "Close",
+  applyAgency: "Apply as an agency",
+  agencyFormIntro: "Tell us how your agency can support local farmers.",
+  enquiryFormIntro: "Send your question to the Homesteader team.",
+  agencyName: "Agency name",
+  contactName: "Contact person",
+  email: "Email address",
+  phone: "Phone number",
+  serviceArea: "Service area",
+  servicesOffered: "How will your agency help farmers?",
+  topic: "Topic",
+  message: "Message",
+  sendEnquiry: "Send enquiry",
+  submitApplication: "Submit agency application",
+  submitting: "Submitting...",
+  enquirySent: "Your enquiry was sent to the admin team.",
+  agencyApplicationSent: "Your agency application was sent for admin review.",
+  requestFailed: "Could not submit your request. Please try again.",
   heroNote: "Made to support farmers, families and agriculture learners",
   next: "YOUR FARMING COMPANION",
   cardTitle: "Knowledge for every season",
@@ -148,8 +168,6 @@ const english = {
   noPrice: "No matching example records.",
   demoOnly:
     "Illustrative values only — these are not live market prices.",
-  submitted:
-    "Demo only: connect this form to your Spring Boot API to save the enquiry.",
 };
 
 const marathi = {
@@ -164,6 +182,24 @@ const marathi = {
     "भारतीय शेतकरी बांधवांसाठी पीक माहिती, बाजारभाव, मातीविषयक मार्गदर्शन आणि प्रशिक्षणाच्या संधी.",
   explore: "सेवा पाहा",
   ask: "प्रश्न विचारा",
+  close: "बंद करा",
+  applyAgency: "संस्था म्हणून अर्ज करा",
+  agencyFormIntro: "आपली संस्था स्थानिक शेतकऱ्यांना कशी मदत करू शकते ते सांगा.",
+  enquiryFormIntro: "होमस्टेडर टीमला आपला प्रश्न पाठवा.",
+  agencyName: "संस्थेचे नाव",
+  contactName: "संपर्क व्यक्ती",
+  email: "ईमेल",
+  phone: "फोन नंबर",
+  serviceArea: "सेवा क्षेत्र",
+  servicesOffered: "आपली संस्था शेतकऱ्यांना कशी मदत करेल?",
+  topic: "विषय",
+  message: "संदेश",
+  sendEnquiry: "चौकशी पाठवा",
+  submitApplication: "संस्थेचा अर्ज पाठवा",
+  submitting: "पाठवत आहे...",
+  enquirySent: "आपली चौकशी प्रशासक टीमकडे पाठवली आहे.",
+  agencyApplicationSent: "आपला संस्थेचा अर्ज प्रशासकीय तपासणीसाठी पाठवला आहे.",
+  requestFailed: "विनंती पाठवता आली नाही. पुन्हा प्रयत्न करा.",
   heroNote: "शेतकरी, कुटुंबे आणि कृषी विद्यार्थ्यांसाठी उपयुक्त",
   next: "तुमचा शेतीमित्र",
   cardTitle: "प्रत्येक हंगामासाठी माहिती",
@@ -239,8 +275,6 @@ const marathi = {
   noPrice: "नोंद सापडली नाही.",
   demoOnly:
     "हे फक्त नमुना दर आहेत — हे थेट किंवा आजचे बाजारभाव नाहीत.",
-  submitted:
-    "प्रात्यक्षिक: चौकशी जतन करण्यासाठी हा फॉर्म Spring Boot API शी जोडा.",
 };
 
 export const copy = { en: english, mr: marathi };

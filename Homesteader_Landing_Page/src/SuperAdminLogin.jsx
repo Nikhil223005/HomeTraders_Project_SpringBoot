@@ -1,24 +1,61 @@
 
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { loginSuperAdmin } from "./Api/api.js";
 import "./SuperAdminLogin.css";
 
 export default function SuperAdminLogin() {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
+
     setError("");
+    setSuccess("");
+    setIsSubmitting(true);
 
-    if (!email.trim() || !password) {
-      setError("Please enter your email and password.");
-      return;
+    try {
+      const response = await loginSuperAdmin({
+        email: email.trim(),
+        password,
+      });
+      const admin = response.data?.admin;
+      if (!admin) {
+        setError(response.data?.message || "Admin details were not returned by the server.");
+        return;
+      }
+
+      sessionStorage.setItem(
+        "superAdmin",
+        JSON.stringify({
+          sa_id: admin.id,
+          sa_name: admin.name,
+          sa_email: admin.email,
+          sa_role: admin.role,
+        })
+      );
+      navigate("/superadmin-dashboard", { replace: true });
+    } catch (loginError) {
+      if (loginError.response?.status === 401) {
+        setError("Invalid email or password.");
+      } else if (loginError.response?.data?.message) {
+        setError(loginError.response.data.message);
+      } else {
+        setError(
+          loginError.message ||
+            "Unable to connect to the login service. Please try again."
+        );
+      }
+    } finally {
+      setIsSubmitting(false);
     }
-
-    // Demo only: connect this form to your backend for real authentication.
-    setError("Login authentication is not connected yet.");
   };
 
   return (
@@ -39,15 +76,24 @@ export default function SuperAdminLogin() {
           ← Back to Home
         </a>
 
-        <form className="superadmin-card" onSubmit={handleLogin}>
+        <form
+          className="superadmin-card"
+          onSubmit={handleLogin}
+        >
           <div className="superadmin-lock">♙</div>
-          <p className="superadmin-eyebrow">ADMINISTRATION PORTAL</p>
+
+          <p className="superadmin-eyebrow">
+            ADMINISTRATION PORTAL
+          </p>
+
           <h2>Super Admin Login</h2>
+
           <p className="superadmin-subtitle">
             Sign in to manage your Homesteader platform.
           </p>
 
           <label htmlFor="admin-email">Email Address</label>
+
           <input
             id="admin-email"
             type="email"
@@ -59,6 +105,7 @@ export default function SuperAdminLogin() {
           />
 
           <label htmlFor="admin-password">Password</label>
+
           <div className="superadmin-password-wrap">
             <input
               id="admin-password"
@@ -69,6 +116,7 @@ export default function SuperAdminLogin() {
               autoComplete="current-password"
               required
             />
+
             <button
               type="button"
               className="superadmin-show-password"
@@ -78,10 +126,26 @@ export default function SuperAdminLogin() {
             </button>
           </div>
 
-          {error && <p className="superadmin-error">{error}</p>}
+          {error && (
+            <p className="superadmin-error" role="alert">
+              {error}
+            </p>
+          )}
 
-          <button type="submit" className="superadmin-submit">
-            Sign In to Dashboard →
+          {success && (
+            <p className="superadmin-success" role="status">
+              {success}
+            </p>
+          )}
+
+          <button
+            type="submit"
+            className="superadmin-submit"
+            disabled={isSubmitting}
+          >
+            {isSubmitting
+              ? "Signing in..."
+              : "Sign In to Dashboard →"}
           </button>
 
           <p className="superadmin-security">

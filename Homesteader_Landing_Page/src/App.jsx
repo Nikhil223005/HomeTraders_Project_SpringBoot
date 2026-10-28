@@ -22,7 +22,12 @@ import {
 } from "lucide-react";
 
 import { copy, cropData } from "./data.js";
+import {
+  submitAgencyApplication,
+  submitEnquiry as sendEnquiry,
+} from "./Api/api.js";
 import "./App.css";
+import "./RequestForms.css";
 import { Link } from "react-router-dom";
 
 // Service icons
@@ -85,6 +90,8 @@ export default function App() {
   // Modal and notification settings
   const [modal, setModal] = useState("");
   const [notice, setNotice] = useState("");
+  const [requestError, setRequestError] = useState("");
+  const [isSubmittingRequest, setIsSubmittingRequest] = useState(false);
 
   // Enquiry form data
   const [form, setForm] = useState({
@@ -92,6 +99,14 @@ export default function App() {
     email: "",
     topic: "Crop guidance",
     message: "",
+  });
+  const [agencyForm, setAgencyForm] = useState({
+    agencyName: "",
+    contactName: "",
+    email: "",
+    phone: "",
+    serviceArea: "",
+    description: "",
   });
 
   // Newsletter email
@@ -152,21 +167,56 @@ export default function App() {
     }));
 
     setModal("enquiry");
+    setRequestError("");
   };
 
   // Submit enquiry
-  const submitEnquiry = (event) => {
+  const submitEnquiry = async (event) => {
     event.preventDefault();
+    setRequestError("");
+    setIsSubmittingRequest(true);
+    try {
+      await sendEnquiry(form);
+      setModal("");
+      notify(t.enquirySent);
+      setForm({ name: "", email: "", topic: "Crop guidance", message: "" });
+    } catch (error) {
+      setRequestError(
+        error.response?.data?.message || t.requestFailed
+      );
+    } finally {
+      setIsSubmittingRequest(false);
+    }
+  };
 
-    setModal("");
-    notify(t.submitted);
+  const submitAgencyRequest = async (event) => {
+    event.preventDefault();
+    setRequestError("");
+    setIsSubmittingRequest(true);
+    try {
+      await submitAgencyApplication(agencyForm);
+      setModal("");
+      notify(t.agencyApplicationSent);
+      setAgencyForm({
+        agencyName: "",
+        contactName: "",
+        email: "",
+        phone: "",
+        serviceArea: "",
+        description: "",
+      });
+    } catch (error) {
+      setRequestError(
+        error.response?.data?.message || t.requestFailed
+      );
+    } finally {
+      setIsSubmittingRequest(false);
+    }
+  };
 
-    setForm({
-      name: "",
-      email: "",
-      topic: "Crop guidance",
-      message: "",
-    });
+  const openAgencyApplication = () => {
+    setRequestError("");
+    setModal("agency");
   };
 
   // Update an individual enquiry field
@@ -399,18 +449,28 @@ export default function App() {
                     <h3>{title}</h3>
                     <p>{t.serviceTexts[index]}</p>
 
-                    <a
-                      href={
-                        index === 3
-                          ? "#contact"
-                          : index === 4
-                            ? "#training"
-                            : "#crops"
-                      }
-                    >
-                      {t.exploreFeature}
-                      <ArrowRight size={15} />
-                    </a>
+                    {index === 3 ? (
+                      <button
+                        className="text-link"
+                        onClick={() => openEnquiry()}
+                      >
+                        {t.exploreFeature}
+                        <ArrowRight size={15} />
+                      </button>
+                    ) : index === 4 ? (
+                      <button
+                        className="text-link"
+                        onClick={openAgencyApplication}
+                      >
+                        {t.applyAgency}
+                        <ArrowRight size={15} />
+                      </button>
+                    ) : (
+                      <a href="#crops">
+                        {t.exploreFeature}
+                        <ArrowRight size={15} />
+                      </a>
+                    )}
                   </article>
                 );
               })}
@@ -609,12 +669,151 @@ export default function App() {
           </div>
         </section>
 
-        {/* Continue with your existing About, How It Works,
-            Training, Contact, Newsletter and Footer sections. */}
       </main>
 
-      {/* Continue using your existing footer, toast notification,
-          login modal and enquiry modal JSX here. */}
+      {modal && (
+        <div
+          className="request-modal-backdrop"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) setModal("");
+          }}
+        >
+          <section
+            className="request-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="request-modal-title"
+          >
+            <button
+              type="button"
+              className="request-modal-close"
+              onClick={() => setModal("")}
+              aria-label={t.close}
+            >
+              <X size={20} />
+            </button>
+            <h2 id="request-modal-title">
+              {modal === "agency" ? t.applyAgency : t.ask}
+            </h2>
+            <p>{modal === "agency" ? t.agencyFormIntro : t.enquiryFormIntro}</p>
+
+            {modal === "agency" ? (
+              <form className="request-form" onSubmit={submitAgencyRequest}>
+                <label>
+                  {t.agencyName}
+                  <input
+                    required
+                    value={agencyForm.agencyName}
+                    onChange={(event) =>
+                      setAgencyForm({ ...agencyForm, agencyName: event.target.value })
+                    }
+                  />
+                </label>
+                <label>
+                  {t.contactName}
+                  <input
+                    required
+                    value={agencyForm.contactName}
+                    onChange={(event) =>
+                      setAgencyForm({ ...agencyForm, contactName: event.target.value })
+                    }
+                  />
+                </label>
+                <label>
+                  {t.email}
+                  <input
+                    required
+                    type="email"
+                    value={agencyForm.email}
+                    onChange={(event) =>
+                      setAgencyForm({ ...agencyForm, email: event.target.value })
+                    }
+                  />
+                </label>
+                <label>
+                  {t.phone}
+                  <input
+                    required
+                    type="tel"
+                    value={agencyForm.phone}
+                    onChange={(event) =>
+                      setAgencyForm({ ...agencyForm, phone: event.target.value })
+                    }
+                  />
+                </label>
+                <label>
+                  {t.serviceArea}
+                  <input
+                    required
+                    value={agencyForm.serviceArea}
+                    onChange={(event) =>
+                      setAgencyForm({ ...agencyForm, serviceArea: event.target.value })
+                    }
+                  />
+                </label>
+                <label>
+                  {t.servicesOffered}
+                  <textarea
+                    required
+                    rows="4"
+                    value={agencyForm.description}
+                    onChange={(event) =>
+                      setAgencyForm({ ...agencyForm, description: event.target.value })
+                    }
+                  />
+                </label>
+                {requestError && <p className="request-error" role="alert">{requestError}</p>}
+                <button className="btn primary" type="submit" disabled={isSubmittingRequest}>
+                  {isSubmittingRequest ? t.submitting : t.submitApplication}
+                </button>
+              </form>
+            ) : (
+              <form className="request-form" onSubmit={submitEnquiry}>
+                <label>
+                  {t.contactName}
+                  <input
+                    required
+                    value={form.name}
+                    onChange={(event) => updateFormField("name", event.target.value)}
+                  />
+                </label>
+                <label>
+                  {t.email}
+                  <input
+                    required
+                    type="email"
+                    value={form.email}
+                    onChange={(event) => updateFormField("email", event.target.value)}
+                  />
+                </label>
+                <label>
+                  {t.topic}
+                  <input
+                    required
+                    value={form.topic}
+                    onChange={(event) => updateFormField("topic", event.target.value)}
+                  />
+                </label>
+                <label>
+                  {t.message}
+                  <textarea
+                    required
+                    rows="4"
+                    value={form.message}
+                    onChange={(event) => updateFormField("message", event.target.value)}
+                  />
+                </label>
+                {requestError && <p className="request-error" role="alert">{requestError}</p>}
+                <button className="btn primary" type="submit" disabled={isSubmittingRequest}>
+                  {isSubmittingRequest ? t.submitting : t.sendEnquiry}
+                </button>
+              </form>
+            )}
+          </section>
+        </div>
+      )}
+
+      {notice && <div className="request-toast" role="status">{notice}</div>}
     </div>
   );
 }

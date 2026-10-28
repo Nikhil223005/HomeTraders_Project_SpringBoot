@@ -1,5 +1,7 @@
 package com.example.demo.DAOLayer;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +15,13 @@ public class Superadmindao implements SuperAdminLayer {
 	superadminrepo ss;
 	
 	@Override
-	public void saveAdmin(SuperAdmin as) {
-		ss.save(as);
-		
+	public void saveAdmin(SuperAdmin admin) {
+		ss.save(admin);
+	}
+
+	@Override
+	public Optional<SuperAdmin> getAdmin(String email, String password) {
+		return ss.findByEmailAndPassword(email, password);
 	}
 
 }
