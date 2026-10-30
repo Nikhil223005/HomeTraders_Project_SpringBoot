@@ -1,55 +1,73 @@
 package com.example.demo.entitys;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
 @Entity
 public class SuperAdmin {
-	
-	@Id
-	private String sa_id;
-	private String sa_name;
-	private String sa_email;
-	private String sa_pass;
-	private String sa_role;
-	
-	public String getSa_id() {
-		return sa_id;
+    
+    @Id
+    @Column(name = "sa_id")
+    private String saId;
+    
+    @Column(name = "sa_name")
+    private String saName;
+    
+    @Column(name = "sa_email")
+    private String saEmail;
+    
+    @Column(name = "sa_pass")
+    private String saPass;
+    
+    @Column(name = "sa_role")
+    private String saRole;
+
+	public String getSaId() {
+		return saId;
 	}
-	public void setSa_id(String sa_id) {
-		this.sa_id = sa_id;
+
+	public void setSaId(String saId) {
+		this.saId = saId;
 	}
-	public String getSa_name() {
-		return sa_name;
+
+	public String getSaName() {
+		return saName;
 	}
-	public void setSa_name(String sa_name) {
-		this.sa_name = sa_name;
+
+	public void setSaName(String saName) {
+		this.saName = saName;
 	}
-	public String getSa_email() {
-		return sa_email;
+
+	public String getSaEmail() {
+		return saEmail;
 	}
-	public void setSa_email(String sa_email) {
-		this.sa_email = sa_email;
+
+	public void setSaEmail(String saEmail) {
+		this.saEmail = saEmail;
 	}
-	public String getSa_pass() {
-		return sa_pass;
+
+	public String getSaPass() {
+		return saPass;
 	}
-	public void setSa_pass(String sa_pass) {
-		this.sa_pass = sa_pass;
+
+	public void setSaPass(String saPass) {
+		this.saPass = saPass;
 	}
-	public String getSa_role() {
-		return sa_role;
+
+	public String getSaRole() {
+		return saRole;
 	}
-	public void setSa_role(String sa_role) {
-		this.sa_role = sa_role;
+
+	public void setSaRole(String saRole) {
+		this.saRole = saRole;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "SuperAdmin [sa_id=" + sa_id + ", sa_name=" + sa_name + ", sa_email=" + sa_email + ", sa_pass=" + sa_pass
-				+ ", sa_role=" + sa_role + "]";
+		return "SuperAdmin [saId=" + saId + ", saName=" + saName + ", saEmail=" + saEmail + ", saPass=" + saPass
+				+ ", saRole=" + saRole + "]";
 	}
-	
-	
+
+    
 }

@@ -12,9 +12,7 @@ import com.example.demo.entitys.SuperAdmin;
 @Repository
 public interface superadminrepo extends JpaRepository<SuperAdmin, String>{
 
-	@Query("select admin from SuperAdmin admin where admin.sa_email = :email and admin.sa_pass = :password")
-	Optional<SuperAdmin> findByEmailAndPassword(
-			@Param("email") String email,
-			@Param("password") String password);
+	 Optional<SuperAdmin> findBySaEmailAndSaPass(String saEmail, String saPass);
 
+	 boolean existsBySaEmailIgnoreCase(String saEmail);
 }

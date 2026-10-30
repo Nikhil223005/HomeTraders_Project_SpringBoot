@@ -9,6 +9,9 @@ export const getProperties = () => API.get("/properties");
 export const loginUser = (data) => API.post("/auth/login", data);
 export const loginSuperAdmin = (data) => API.post("/superadmin/login", data);
 export const logoutSuperAdmin = () => API.post("/superadmin/logout");
+export const registerSuperAdmin = (data) => API.post("/superadmin/admins", data);
+export const getSubAdmins = () => API.get("/fetchdata");
+export const registerSubAdmin = (data) => API.post("/saveSub", data);
 export const submitEnquiry = (data) => API.post("/enquiries", data);
 export const submitAgencyApplication = (data) =>
   API.post("/agency-applications", data);

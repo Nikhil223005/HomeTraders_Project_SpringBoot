@@ -1,0 +1,474 @@
+
+.subadmin-register-page {
+  padding: 30px;
+  color: #243329;
+  width: 100%;
+}
+
+.subadmin-register-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.subadmin-eyebrow {
+  color: #27834b;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.subadmin-register-heading h2 {
+  font-size: 28px;
+  margin: 8px 0;
+}
+
+.subadmin-register-heading p {
+  color: #78847b;
+  margin: 0;
+}
+
+.subadmin-heading-icon {
+  width: 55px;
+  height: 55px;
+  border-radius: 15px;
+  display: grid;
+  place-items: center;
+  background: #e7f5e9;
+  font-size: 26px;
+}
+
+.subadmin-register-card {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  border: 1px solid #e6ece7;
+  box-shadow: 0 5px 20px rgba(25, 55, 35, 0.05);
+  max-width: 950px;
+}
+
+.subadmin-register-card h3 {
+  font-size: 20px;
+  margin: 0 0 8px;
+}
+
+.subadmin-form-description {
+  color: #849087;
+  margin-bottom: 28px;
+}
+
+.subadmin-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.subadmin-field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.subadmin-field label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #34483a;
+}
+
+.subadmin-field input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 14px;
+  border: 1px solid #dce5de;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  background: #fff;
+}
+
+.subadmin-field input:focus {
+  border-color: #319657;
+  box-shadow: 0 0 0 3px rgba(49, 150, 87, 0.10);
+}
+
+.subadmin-field input[readonly] {
+  background: #f2f6f3;
+  color: #27834b;
+  font-weight: 700;
+}
+
+.subadmin-message {
+  margin-top: 22px;
+  padding: 12px 15px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.subadmin-message.error {
+  color: #b42318;
+  background: #fff0ef;
+}
+
+.subadmin-message.success {
+  color: #187442;
+  background: #eaf8ef;
+}
+
+.subadmin-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 30px;
+  padding-top: 22px;
+  border-top: 1px solid #edf1ed;
+}
+
+.subadmin-form-actions button {
+  padding: 12px 22px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.subadmin-reset-btn {
+  background: #eef2ef;
+  color: #435248;
+}
+
+.subadmin-submit-btn {
+  background: #27834b;
+  color: white;
+}
+
+.subadmin-submit-btn:hover {
+  background: #1d693b;
+}
+
+.subadmin-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 650px) {
+  .subadmin-register-page {
+    padding: 16px;
+  }
+
+  .subadmin-register-card {
+    padding: 20px;
+  }
+
+  .subadmin-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .subadmin-form-actions {
+    flex-direction: column;
+  }
+
+  .subadmin-form-actions button {
+    width: 100%;
+  }
+}
+
+.subadmin-register-page {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: clamp(18px, 3vw, 34px);
+}
+
+.subadmin-register-heading {
+  gap: 20px;
+}
+
+.subadmin-register-heading h2 {
+  color: #183629;
+  letter-spacing: -0.7px;
+}
+
+.subadmin-heading-icon {
+  flex: 0 0 58px;
+  background: linear-gradient(135deg, #e5f4b8, #d9f1df);
+  box-shadow: 0 8px 20px rgba(49, 150, 87, 0.1);
+}
+
+.subadmin-register-card,
+.subadmin-list-section {
+  max-width: none;
+  border: 1px solid #e4ede5;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(25, 55, 35, 0.045);
+}
+
+.subadmin-register-card {
+  padding: clamp(20px, 3vw, 30px);
+}
+
+.subadmin-register-card h3,
+.subadmin-list-heading h3 {
+  color: #20372a;
+  letter-spacing: -0.3px;
+}
+
+.subadmin-form-description {
+  line-height: 1.6;
+}
+
+.subadmin-field input {
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.subadmin-field input:focus-visible {
+  border-color: #319657;
+  box-shadow: 0 0 0 3px rgba(49, 150, 87, 0.14);
+}
+
+.subadmin-form-actions button {
+  transition: background 150ms ease, transform 150ms ease;
+}
+
+.subadmin-form-actions button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.subadmin-reset-btn:hover {
+  background: #e4ebe5;
+}
+
+.subadmin-submit-btn {
+  background: linear-gradient(110deg, #247443, #319657);
+}
+
+.subadmin-list-section {
+  margin-top: 20px;
+  padding: clamp(18px, 3vw, 26px);
+  background: white;
+}
+
+.subadmin-list-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 17px;
+}
+
+.subadmin-list-heading h3 {
+  margin: 7px 0 5px;
+  font-size: 20px;
+}
+
+.subadmin-list-heading p {
+  margin: 0;
+  color: #78847b;
+  font-size: 13px;
+}
+
+.subadmin-refresh-btn {
+  flex-shrink: 0;
+  padding: 10px 13px;
+  border: 1px solid #d6e8d9;
+  border-radius: 8px;
+  background: #f7fbf6;
+  color: #24633d;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.subadmin-refresh-btn:hover:not(:disabled) {
+  background: #eaf6eb;
+}
+
+.subadmin-refresh-btn:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.subadmin-local-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0 0 15px;
+  padding: 12px 14px;
+  border: 1px solid #f1e2b9;
+  border-radius: 10px;
+  background: #fff9e9;
+  color: #725d2e;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.subadmin-local-notice p {
+  margin: 0;
+}
+
+.subadmin-search {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 15px;
+  padding: 0 12px;
+  border: 1px solid #dce5de;
+  border-radius: 9px;
+  color: #76847a;
+}
+
+.subadmin-search:focus-within {
+  border-color: #319657;
+  box-shadow: 0 0 0 3px rgba(49, 150, 87, 0.1);
+}
+
+.subadmin-search > span {
+  font-size: 21px;
+}
+
+.subadmin-search input {
+  width: 100%;
+  min-width: 0;
+  padding: 12px 0;
+  border: 0;
+  outline: 0;
+  color: #243329;
+  font: inherit;
+  font-size: 13px;
+}
+
+.subadmin-table-wrap {
+  overflow-x: auto;
+  border: 1px solid #e8eee8;
+  border-radius: 11px;
+}
+
+.subadmin-table {
+  width: 100%;
+  min-width: 700px;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.subadmin-table th {
+  padding: 13px 15px;
+  background: #f5f9f4;
+  color: #728078;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.subadmin-table td {
+  padding: 14px 15px;
+  border-top: 1px solid #edf1ed;
+  color: #4b5c50;
+  font-size: 13px;
+}
+
+.subadmin-table tbody tr:hover {
+  background: #fbfdfb;
+}
+
+.subadmin-table-person {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #283e30;
+}
+
+.subadmin-table-avatar {
+  display: grid;
+  flex: 0 0 35px;
+  height: 35px;
+  place-items: center;
+  border-radius: 11px;
+  background: linear-gradient(135deg, #e7f4bf, #dff2e4);
+  color: #24633d;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.subadmin-role-pill {
+  display: inline-block;
+  padding: 5px 8px;
+  border-radius: 20px;
+  background: #e9f6ec;
+  color: #247443;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.subadmin-row-actions {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.subadmin-row-actions button {
+  padding: 7px 10px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  font-size: 11px;
+  font-weight: 700;
+  transition: transform 150ms ease, background 150ms ease;
+}
+
+.subadmin-row-actions button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.subadmin-edit-btn {
+  border-color: #cfe5d3 !important;
+  background: #eef8ee;
+  color: #276744;
+}
+
+.subadmin-edit-btn:hover:not(:disabled) {
+  background: #e2f2e4;
+}
+
+.subadmin-delete-btn {
+  border-color: #f2d2ce !important;
+  background: #fff1ef;
+  color: #a63e35;
+}
+
+.subadmin-delete-btn:hover:not(:disabled) {
+  background: #ffe4e0;
+}
+
+.subadmin-row-actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.subadmin-list-state {
+  padding: 28px 16px;
+  border: 1px dashed #dce8de;
+  border-radius: 10px;
+  color: #78847b;
+  font-size: 13px;
+  text-align: center;
+}
+
+.subadmin-list-section .subadmin-message {
+  margin: 0 0 14px;
+}
+
+@media (max-width: 650px) {
+  .subadmin-register-page {
+    padding: 18px 0;
+  }
+
+  .subadmin-list-heading {
+    align-items: flex-start;
+  }
+
+  .subadmin-list-section {
+    padding: 16px;
+  }
+
+  .subadmin-refresh-btn {
+    padding: 9px 10px;
+  }
+}

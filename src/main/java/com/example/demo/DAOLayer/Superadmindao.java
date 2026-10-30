@@ -21,7 +21,12 @@ public class Superadmindao implements SuperAdminLayer {
 
 	@Override
 	public Optional<SuperAdmin> getAdmin(String email, String password) {
-		return ss.findByEmailAndPassword(email, password);
+		return ss.findBySaEmailAndSaPass(email, password);
+	}
+
+	@Override
+	public boolean adminEmailExists(String email) {
+		return ss.existsBySaEmailIgnoreCase(email);
 	}
 
 }

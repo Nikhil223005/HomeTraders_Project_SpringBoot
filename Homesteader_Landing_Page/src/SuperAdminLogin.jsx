@@ -14,6 +14,8 @@ export default function SuperAdminLogin() {
   const [success, setSuccess] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -32,15 +34,15 @@ export default function SuperAdminLogin() {
         return;
       }
 
-      sessionStorage.setItem(
-        "superAdmin",
-        JSON.stringify({
-          sa_id: admin.id,
-          sa_name: admin.name,
-          sa_email: admin.email,
-          sa_role: admin.role,
-        })
-      );
+ sessionStorage.setItem(
+  "superAdmin",
+  JSON.stringify({
+    sa_id: admin.id || admin.saId || admin.sa_id,
+    sa_name: admin.name || admin.saName || admin.sa_name, // FIX HERE
+    sa_email: admin.email || admin.saEmail || admin.sa_email,
+    sa_role: admin.role || admin.saRole || admin.sa_role,
+  })
+);
       navigate("/superadmin-dashboard", { replace: true });
     } catch (loginError) {
       if (loginError.response?.status === 401) {
@@ -86,7 +88,7 @@ export default function SuperAdminLogin() {
             ADMINISTRATION PORTAL
           </p>
 
-          <h2>Super Admin Login</h2>
+          <h2> Login</h2>
 
           <p className="superadmin-subtitle">
             Sign in to manage your Homesteader platform.

@@ -1,70 +1,70 @@
 package com.example.demo.Controller;
 
 import java.util.UUID;
+import java.util.Map;
 import java.util.Optional;
-
-import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.example.demo.ServiseLayer.SuperAdminLayer;
 import com.example.demo.entitys.SuperAdmin;
 
+import jakarta.servlet.http.HttpSession;
+
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/superadmin")
+@CrossOrigin(origins = "http://localhost:3000")
 public class superADminController {
 
-	@Autowired
-	private SuperAdminLayer as;
+    @Autowired
+    private SuperAdminLayer as;
 
-	@PostMapping("/save")
-	public String one(@RequestBody SuperAdmin user) {
-		user.setSa_id(UUID.randomUUID().toString());
-		as.saveAdmin(user);
-		System.out.println("Saved super admin: " + user.getSa_email() + " | ID=" + user.getSa_id());
-		return "Saved Super admin data ID: " + user.getSa_id();
-	}
+    // 1. Create Admin
+    @PostMapping("/save")
+    public String saveAdmin(@RequestBody SuperAdmin admin) {
+        admin.setSaId(UUID.randomUUID().toString());
+        admin.setSaRole("ADMIN");
+        as.saveAdmin(admin);
+        return "Admin saved successfully";
+    }
 
-	@PostMapping("/superadmin/login")
-	public ResponseEntity<LoginResponse> login(
-			@RequestBody LoginRequest request,
-			HttpSession session) {
-		if (request == null || request.email() == null || request.email().isBlank()
-				|| request.password() == null || request.password().isBlank()) {
-			return ResponseEntity.badRequest()
-					.body(new LoginResponse("Email and password are required.", null));
-		}
 
-		Optional<SuperAdmin> admin = as.getAdmin(request.email().trim(), request.password());
-		if (admin.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-					.body(new LoginResponse("Invalid email or password.", null));
-		}
+     
 
-		SuperAdmin authenticatedAdmin = admin.get();
-		session.setAttribute("superAdminId", authenticatedAdmin.getSa_id());
-		session.setMaxInactiveInterval(30 * 60);
-		AdminSummary summary = new AdminSummary(
-				authenticatedAdmin.getSa_id(),
-				authenticatedAdmin.getSa_name(),
-				authenticatedAdmin.getSa_email(),
-				authenticatedAdmin.getSa_role());
-		return ResponseEntity.ok(new LoginResponse("Login successful.", summary));
-	}
+        @PostMapping("/login")
+        public Map<String, Object> login(@RequestBody Map<String, String> data , HttpSession session) {
+            String email = data.get("email");
+            String password = data.get("password");
 
-	@PostMapping("/superadmin/logout")
-	public ResponseEntity<Void> logout(HttpSession session) {
-		session.invalidate();
-		return ResponseEntity.noContent().build();
-	}
+            Optional<SuperAdmin> admin = as.getAdmin(email, password);
+            	
+            if (admin.isPresent()) {
+            	SuperAdmin a = admin.get();
+            	session.setAttribute("adminName", a.getSaName());
+                session.setAttribute("adminEmail", a.getSaEmail());
+                return Map.of(
+                    "status", "success",
+                    "admin", admin.get()
+                );    
+                
+                } else {
+                return Map.of("status", "fail", "message", "Invalid email or password");
+            }
+        }
+        @GetMapping("/getSession")
+        public Map<String, Object> getSession(HttpSession session){
+            String name = (String) session.getAttribute("adminName");
+            if(name != null){
+                return Map.of("name", name);
+            } else {
+                return Map.of("name", "Not Logged In");
+            }
+        }
 
-	public record LoginRequest(String email, String password) {}
 
-	public record AdminSummary(String id, String name, String email, String role) {}
 
-	public record LoginResponse(String message, AdminSummary admin) {}
+
+
+
+
 }
+    
