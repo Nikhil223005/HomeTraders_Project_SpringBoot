@@ -1,5 +1,5 @@
 
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   Sprout,
   Menu,
@@ -92,6 +92,11 @@ export default function App() {
   const [notice, setNotice] = useState("");
   const [requestError, setRequestError] = useState("");
   const [isSubmittingRequest, setIsSubmittingRequest] = useState(false);
+  const noticeTimer = useRef(null);
+
+  useEffect(() => () => {
+    if (noticeTimer.current) window.clearTimeout(noticeTimer.current);
+  }, []);
 
   // Enquiry form data
   const [form, setForm] = useState({
@@ -141,9 +146,11 @@ export default function App() {
   const notify = (message) => {
     setNotice(message);
 
-    window.setTimeout(() => {
+    if (noticeTimer.current) window.clearTimeout(noticeTimer.current);
+    noticeTimer.current = window.setTimeout(() => {
       setNotice("");
-    }, 4500);
+      noticeTimer.current = null;
+    }, 7000);
   };
 
   // Change website language
@@ -182,7 +189,9 @@ export default function App() {
       setForm({ name: "", email: "", topic: "Crop guidance", message: "" });
     } catch (error) {
       setRequestError(
-        error.response?.data?.message || t.requestFailed
+        error.response?.data?.message ||
+          (typeof error.response?.data === "string" ? error.response.data : "") ||
+          t.requestFailed
       );
     } finally {
       setIsSubmittingRequest(false);
@@ -194,7 +203,10 @@ export default function App() {
     setRequestError("");
     setIsSubmittingRequest(true);
     try {
-      await submitAgencyApplication(agencyForm);
+      const response = await submitAgencyApplication(agencyForm);
+      if (response.status < 200 || response.status >= 300) {
+        throw new Error(t.requestFailed);
+      }
       setModal("");
       notify(t.agencyApplicationSent);
       setAgencyForm({
@@ -207,7 +219,9 @@ export default function App() {
       });
     } catch (error) {
       setRequestError(
-        error.response?.data?.message || t.requestFailed
+        error.response?.data?.message ||
+          (typeof error.response?.data === "string" ? error.response.data : "") ||
+          t.requestFailed
       );
     } finally {
       setIsSubmittingRequest(false);
@@ -813,7 +827,15 @@ export default function App() {
         </div>
       )}
 
-      {notice && <div className="request-toast" role="status">{notice}</div>}
+      {notice && (
+        <div className="request-toast" role="status">
+          <CheckCircle2 size={21} aria-hidden="true" />
+          <span>{notice}</span>
+          <button type="button" onClick={() => setNotice("")} aria-label={t.close}>
+            <X size={18} />
+          </button>
+        </div>
+      )}
     </div>
   );
 }
