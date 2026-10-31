@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.Repos.superadminrepo;
 import com.example.demo.ServiseLayer.SuperAdminLayer;
 import com.example.demo.entitys.SuperAdmin;
 

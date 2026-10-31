@@ -1,1 +1,77 @@
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;font-family:'DM Sans',sans-serif}button,input,textarea,select{font:inherit}button,a{-webkit-tap-highlight-color:transparent}button{cursor:pointer}a{color:inherit;text-decoration:none}img{display:block;max-width:100%}
+* {
+    box-sizing: border-box
+}
+
+html {
+    scroll-behavior: smooth
+}
+
+body {
+    margin: 0;
+    min-width: 320px;
+    font-family: 'DM Sans', sans-serif
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent
+}
+
+button {
+    cursor: pointer
+}
+
+a {
+    color: inherit;
+    text-decoration: none
+}
+
+img {
+    display: block;
+    max-width: 100%
+}
+
+html {
+    font-size: 16px
+}
+
+body :is(p, small, label, button, input, textarea, select, li, td, th, a) {
+    font-size: max(13px, .9em) !important
+}
+
+.subdash :is(p, small, label, button, input, select, th, td, a) {
+    font-size: 14px !important
+}
+
+.subdash :is(button, input, select) {
+    line-height: 1.35
+}
+
+body {
+    line-height: 1.55;
+    letter-spacing: .01em
+}
+
+body :is(p, li, label, td, th) {
+    line-height: 1.65
+}
+
+body :is(button, input, textarea, select) {
+    letter-spacing: .015em
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    letter-spacing: -.02em
+}

@@ -12,9 +12,18 @@ export const logoutSuperAdmin = () => API.post("/superadmin/logout");
 export const registerSuperAdmin = (data) => API.post("/superadmin/admins", data);
 export const getSubAdmins = () => API.get("/fetchdata");
 export const registerSubAdmin = (data) => API.post("/saveSub", data);
+export const updateSubAdmin = (id, data) => API.put(`/updateSub/${id}`, data);
+export const deleteSubAdmin = (id) => API.delete(`/deleteSub/${id}`);
 export const submitEnquiry = (data) => API.post("/enquiries", data);
 export const submitAgencyApplication = (data) =>
-  API.post("/agency-applications", data);
+  API.post("/agency", {
+    aaname: data.agencyName.trim(),
+    aacontact: data.contactName.trim(),
+    aaemail: data.email.trim(),
+    aamobile: data.phone.trim(),
+    aaplace: data.serviceArea.trim(),
+    aanote: data.description.trim(),
+  });
 export const getAdminEnquiries = () => API.get("/superadmin/enquiries");
 export const updateEnquiryStatus = (id, status) =>
   API.patch(`/superadmin/enquiries/${id}/status`, { status });

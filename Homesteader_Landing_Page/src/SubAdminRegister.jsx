@@ -1,5 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { getSubAdmins, registerSubAdmin } from "./Api/api.js";
+import {
+  deleteSubAdmin,
+  getSubAdmins,
+  registerSubAdmin,
+  updateSubAdmin,
+} from "./Api/api.js";
 import "./SubAdminRegister.css";
 
 const emptyForm = {
@@ -17,6 +22,7 @@ export default function SubAdminRegister() {
   const [subAdmins, setSubAdmins] = useState([]);
   const [editingId, setEditingId] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [deletingId, setDeletingId] = useState(null);
   const [isLoadingList, setIsLoadingList] = useState(true);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
@@ -67,20 +73,27 @@ export default function SubAdminRegister() {
     setError("");
 
     if (editingId) {
-      setSubAdmins((current) =>
-        current.map((subAdmin) =>
-          getSubAdminId(subAdmin) === editingId
-            ? {
-                ...subAdmin,
-                sname: form.sa_name.trim(),
-                semail: form.sa_email.trim(),
-                smobile: form.sa_mobile.trim(),
-              }
-            : subAdmin
-        )
-      );
-      clearForm();
-      setMessage("Sub-admin details updated in this screen only; the server does not support editing yet.");
+      setLoading(true);
+      try {
+        await updateSubAdmin(editingId, {
+          sname: form.sa_name.trim(),
+          semail: form.sa_email.trim(),
+          smobile: form.sa_mobile.trim(),
+        });
+        setForm(emptyForm);
+        setEditingId(null);
+        setMessage("Sub-admin details updated successfully.");
+        await loadSubAdmins();
+      } catch (requestError) {
+        setError(
+          requestError.response?.data?.message ||
+            (typeof requestError.response?.data === "string" ? requestError.response.data : "") ||
+            requestError.message ||
+            "Could not update sub-admin."
+        );
+      } finally {
+        setLoading(false);
+      }
       return;
     }
 
@@ -134,16 +147,30 @@ export default function SubAdminRegister() {
     document.querySelector(".subadmin-register-page")?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const removeFromCurrentView = (subAdmin) => {
+  const removeSubAdmin = async (subAdmin) => {
     const name = subAdmin.sname || "this sub-admin";
-    if (!window.confirm(`Remove ${name} from the current list? This will not delete the server record.`)) {
+    if (!window.confirm(`Delete ${name}? This will permanently remove the server record.`)) {
       return;
     }
 
     const id = getSubAdminId(subAdmin);
-    setSubAdmins((current) => current.filter((entry) => getSubAdminId(entry) !== id));
-    setMessage(`${name} was removed from this screen only; the server does not support deletion yet.`);
+    setDeletingId(id);
     setError("");
+    setMessage("");
+    try {
+      await deleteSubAdmin(id);
+      setMessage(`${name} was deleted successfully.`);
+      await loadSubAdmins();
+    } catch (requestError) {
+      setError(
+        requestError.response?.data?.message ||
+          (typeof requestError.response?.data === "string" ? requestError.response.data : "") ||
+          requestError.message ||
+          "Could not delete sub-admin."
+      );
+    } finally {
+      setDeletingId(null);
+    }
   };
 
   const filteredSubAdmins = subAdmins.filter((subAdmin) =>
@@ -169,7 +196,7 @@ export default function SubAdminRegister() {
         <h3>{editingId ? "Edit Sub Admin" : "Register Sub Admin"}</h3>
         <p className="subadmin-form-description">
           {editingId
-            ? "Update the account details below. This edit is temporary until the server provides an update endpoint."
+            ? "Update the account details below. The saved changes will be applied to the server."
             : "Enter the details below to create a Sub Admin account."}
         </p>
 
@@ -260,7 +287,7 @@ export default function SubAdminRegister() {
             {editingId ? "Cancel edit" : "Clear Form"}
           </button>
           <button type="submit" className="subadmin-submit-btn" disabled={loading}>
-            {loading ? "Registering..." : editingId ? "Save edit on screen" : "Create Sub Admin"}
+            {loading ? (editingId ? "Saving..." : "Registering...") : editingId ? "Save Changes" : "Create Sub Admin"}
           </button>
         </div>
       </form>
@@ -280,14 +307,6 @@ export default function SubAdminRegister() {
           >
             {isLoadingList ? "Loading..." : "↻ Refresh"}
           </button>
-        </div>
-
-        <div className="subadmin-local-notice">
-          <span aria-hidden="true">ℹ️</span>
-          <p>
-            The list is loaded from the server. Edit and delete are screen-only for now;
-            your server currently has no update or delete API.
-          </p>
         </div>
 
         <label className="subadmin-search">
@@ -324,7 +343,7 @@ export default function SubAdminRegister() {
               <tbody>
                 {filteredSubAdmins.map((subAdmin, index) => {
                   const id = getSubAdminId(subAdmin) || `${subAdmin.semail}-${index}`;
-                  return (
+                  return (        
                     <tr key={id}>
                       <td>
                         <div className="subadmin-table-person">
@@ -350,10 +369,10 @@ export default function SubAdminRegister() {
                           <button
                             type="button"
                             className="subadmin-delete-btn"
-                            onClick={() => removeFromCurrentView(subAdmin)}
-                            disabled={!getSubAdminId(subAdmin)}
+                            onClick={() => removeSubAdmin(subAdmin)}
+                            disabled={!getSubAdminId(subAdmin) || deletingId === getSubAdminId(subAdmin)}
                           >
-                            Delete
+                            {deletingId === getSubAdminId(subAdmin) ? "Deleting..." : "Delete"}
                           </button>
                         </div>
                       </td>

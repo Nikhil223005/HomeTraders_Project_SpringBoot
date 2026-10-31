@@ -34,6 +34,23 @@ export default function SuperAdminLogin() {
         return;
       }
 
+ const role = String(admin.role || admin.saRole || admin.sa_role || admin.srole || "").toUpperCase();
+ if (role === "SUB_ADMIN") {
+   sessionStorage.removeItem("superAdmin");
+   sessionStorage.setItem(
+     "subAdmin",
+     JSON.stringify({
+       sid: admin.sid || admin.id,
+       sname: admin.sname || admin.name || admin.saName || admin.sa_name,
+       semail: admin.semail || admin.email || admin.saEmail || admin.sa_email,
+       srole: role,
+     })
+   );
+   navigate("/subadmin-dashboard", { replace: true });
+   return;
+ }
+
+ sessionStorage.removeItem("subAdmin");
  sessionStorage.setItem(
   "superAdmin",
   JSON.stringify({
@@ -91,7 +108,7 @@ export default function SuperAdminLogin() {
           <h2> Login</h2>
 
           <p className="superadmin-subtitle">
-            Sign in to manage your Homesteader platform.
+            Sign in to open your Homesteader management workspace.
           </p>
 
           <label htmlFor="admin-email">Email Address</label>

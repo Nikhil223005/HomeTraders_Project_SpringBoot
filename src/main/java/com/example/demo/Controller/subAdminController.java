@@ -1,22 +1,17 @@
 package com.example.demo.Controller;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.service.annotation.GetExchange;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.example.demo.ServiseLayer.SubAdminService;
 import com.example.demo.entitys.SubAdmin;
 
-@Controller
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api")
@@ -42,5 +37,17 @@ public class subAdminController {
 		return sa.getdata();
 	}
 	
+	@PutMapping("/updateSub/{sid}")
+	public SubAdmin update(@PathVariable String sid, @RequestBody SubAdmin user) {
+		return sa.updateSubAdmin(sid, user)
+				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Sub-admin not found"));
+	}
+
+	@DeleteMapping("/deleteSub/{sid}")
+	public void delete(@PathVariable String sid) {
+		if (!sa.deleteSubAdmin(sid)) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Sub-admin not found");
+		}
+	}
 
 }
